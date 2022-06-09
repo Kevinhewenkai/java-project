@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPaneRoot" onKeyPressed="#handleKeyPress" prefWidth="100.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <!-- HBox is used to stack items horizontally left to right -->
+   <VBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="30.0" style="-fx-background-color: #000000#000000 #000000#000000;">
+         <children>
+            <Label opacity="0.7" text="LOOP" textFill="WHITE">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="loopCount" text="?" textFill="WHITE">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </Label>
+            <ProgressBar fx:id="loopProgressBar" prefHeight="8.0" prefWidth="100.0" progress="0.0" style="-fx-accent-colour: #0F3941#0F3941 #0F3941#0F3941;">
+               <HBox.margin>
+                  <Insets left="7.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <Line startY="10.0" stroke="#666666" strokeLineCap="ROUND" strokeWidth="3.0">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Line>
+            <Label opacity="0.7" text="ROUND" textFill="WHITE">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="roundCount" text="?" textFill="WHITE">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Line layoutX="200.0" layoutY="20.0" startY="10.0" stroke="#666666" strokeLineCap="ROUND" strokeWidth="3.0">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Line>
+            <Label layoutX="222.0" layoutY="18.0" opacity="0.7" text="GAME MODE" textFill="WHITE">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="gameModeText" layoutX="263.0" layoutY="18.0" text="?" textFill="WHITE">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <Label layoutX="298.0" layoutY="18.0" opacity="0.7" text="DAMAGE" textFill="WHITE">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/damage.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label fx:id="damageVal" text="?" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </Label>
+            <Line layoutX="297.0" layoutY="20.0" startY="10.0" stroke="#666666" strokeLineCap="ROUND" strokeWidth="3.0">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Line>
+            <Label layoutX="607.0" layoutY="18.0" opacity="0.7" text="DEFENCE" textFill="WHITE">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="558.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/defence.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label fx:id="defenceVal" text="?" textFill="WHITE">
+               <padding>
+                  <Insets left="5.0" right="20.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox>
+         <VBox fx:id="statusPanel" prefWidth="200.0" style="-fx-background-color: #1F1F1F#1F1F1F;">
+            <children>
+               <VBox fx:id="colourPanel" alignment="CENTER" fillWidth="false" spacing="10.0" style="-fx-background-color: #0F3941#0F3941;">
+                  <children>
+                     <HBox alignment="CENTER" spacing="5.0">
+                        <children>
+                           <ImageView fx:id="gameStatusImage" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: lighten;">
+                              <image>
+                                 <Image url="@../../images/running_paused.png" />
+                              </image>
+                           </ImageView>
+                           <Label fx:id="gameStatusText" alignment="CENTER" contentDisplay="CENTER" text="PLANNING" textAlignment="CENTER" textFill="WHITE">
+                              <font>
+                                 <Font size="16.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox spacing="10.0">
+                        <children>
+                           <Button fx:id="pauseToggle" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlePauseToggle" prefHeight="35.0" prefWidth="40.0" text="| |" textAlignment="CENTER">
+                              <cursor>
+                                 <Cursor fx:constant="HAND" />
+                              </cursor></Button>
+                           <Button fx:id="playToggle" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handlePlayToggle" prefHeight="35.0" prefWidth="40.0" text="▶" textAlignment="CENTER">
+                              <cursor>
+                                 <Cursor fx:constant="HAND" />
+                              </cursor>
+                              <font>
+                                 <Font size="15.0" />
+                              </font></Button>
+                           <Button fx:id="speedToggle" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSpeedToggle" prefHeight="35.0" prefWidth="40.0" text="1x">
+                              <cursor>
+                                 <Cursor fx:constant="HAND" />
+                              </cursor></Button>
+                        </children>
+                     </HBox>
+                     <Button fx:id="visitStoreButton" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#switchToHeroCastle" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #CA8420#CA8420;" text="VISIT STORE" textAlignment="CENTER" textFill="WHITE">
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets bottom="30.0" top="20.0" />
+                  </padding>
+               </VBox>
+               <HBox alignment="CENTER_LEFT">
+                  <children>
+                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../images/heart.png" />
+                        </image>
+                     </ImageView>
+                     <Label fx:id="healthVal" alignment="CENTER" contentDisplay="CENTER" prefWidth="30.0" text="100" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" HBox.hgrow="ALWAYS">
+                        <HBox.margin>
+                           <Insets left="7.0" />
+                        </HBox.margin></Label>
+                     <ProgressBar fx:id="healthBar" maxWidth="1.7976931348623157E308" prefHeight="15.0" progress="1.0" HBox.hgrow="ALWAYS">
+                        <HBox.margin>
+                           <Insets left="7.0" />
+                        </HBox.margin>
+                     </ProgressBar>
+                  </children>
+                  <padding>
+                     <Insets left="20.0" right="20.0" top="20.0" />
+                  </padding>
+               </HBox>
+               <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="67.0">
+                  <children>
+                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../images/gold_pile_new.png" />
+                        </image>
+                     </ImageView>
+                     <Label fx:id="goldCount" text="?" textFill="#ffc300">
+                        <HBox.margin>
+                           <Insets left="10.0" />
+                        </HBox.margin></Label>
+                     <Region HBox.hgrow="ALWAYS" />
+                     <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../images/deep_elf_master_archer.png" />
+                        </image>
+                        <HBox.margin>
+                           <Insets />
+                        </HBox.margin>
+                     </ImageView>
+                     <Label fx:id="alliesCount" text="?" textFill="#00ffd9">
+                        <padding>
+                           <Insets left="10.0" right="10.0" />
+                        </padding></Label>
+                  </children>
+                  <padding>
+                     <Insets left="20.0" right="20.0" top="25.0" />
+                  </padding>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+               </HBox>
+               <HBox alignment="CENTER_LEFT">
+                  <padding>
+                     <Insets left="20.0" right="20.0" top="25.0" />
+                  </padding>
+                  <children>
+                     <Label text="XP" textFill="WHITE" />
+                     <Label text="?" textFill="#84b7ff" fx:id="xpCount">
+                        <padding>
+                           <Insets left="10.0" />
+                        </padding>
+                     </Label>
+                     <Region HBox.hgrow="ALWAYS" />
+                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../images/doggie_coin.png" />
+                        </image>
+                     </ImageView>
+                     <Label fx:id="doggieCoinCount" text="?" textFill="#ffc300" HBox.hgrow="ALWAYS">
+                        <padding>
+                           <Insets left="10.0" right="10.0" />
+                        </padding>
+                     </Label>
+                  </children>
+               </HBox>
+               <VBox fillWidth="false" style="-fx-background-color: #3E3E3E#3E3E3E;" VBox.vgrow="ALWAYS">
+                  <VBox.margin>
+                     <Insets bottom="20.0" left="20.0" right="20.0" top="25.0" />
+                  </VBox.margin>
+                  <padding>
+                     <Insets bottom="5.0" left="8.0" right="10.0" top="10.0" />
+                  </padding>
+                  <children>
+                     <HBox alignment="CENTER">
+                        <children>
+                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../images/goal_scroll.png" />
+                              </image>
+                           </ImageView>
+                           <Label text="GOALS" textFill="WHITE">
+                              <HBox.margin>
+                                 <Insets left="5.0" />
+                              </HBox.margin>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <Label fx:id="goalsText" text="?" textFill="#d2d2d2" wrapText="true" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                           <Insets left="2.0" top="7.0" />
+                        </VBox.margin>
+                     </Label>
+                  </children>
+               </VBox>
+               <GridPane fx:id="cardInventory">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+                  <padding>
+                     <Insets bottom="15.0" left="20.0" right="20.0" />
+                  </padding>
+                  <cursor>
+                     <Cursor fx:constant="DEFAULT" />
+                  </cursor>
+               </GridPane>
+            </children>
+         </VBox>
+         <!-- VBox is used to stack items vertically top to bottom -->
+         <VBox fx:id="gamePanel" alignment="CENTER" prefHeight="570.0" prefWidth="400.0" style="-fx-background-color: #000000#000000;">
+            <children>
+               <!-- squares contains the path, buildings, character, and enemies -->
+               <GridPane fx:id="squares" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                  <columnConstraints>
+                     <ColumnConstraints />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints />
+                  </rowConstraints>
+                  <children>
+
+                  </children>
+               </GridPane>
+            </children>
+            <effect>
+               <InnerShadow blurType="GAUSSIAN" height="75.0" radius="37.0" width="75.0" />
+            </effect>
+         </VBox>
+         <VBox fx:id="inventoryPanel" prefWidth="200.0" style="-fx-background-color: #1F1F1F#1F1F1F;">
+            <children>
+               <!-- equippedItems contains the equipment equipped by the character in special slots -->
+               <!-- TODO = extend this to have slots for equipping armour, shields, helmets, and any other equippable items -->
+               <GridPane fx:id="equippedItems" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                  <columnConstraints>
+                     <ColumnConstraints />
+                     <ColumnConstraints />
+                     <ColumnConstraints />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  </rowConstraints>
+                  <children>
+                     <!-- swordCell is the cell where a sword intended to be equipped will be dragged by the human player -->
+                     <ImageView id="swordCell" fx:id="swordSlot" fitHeight="32.0" fitWidth="32.0" GridPane.columnIndex="0" GridPane.rowIndex="0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">    
+                        <image>
+                           <Image url="@../../images/sword_slot.png" />
+                        </image>
+                     </ImageView>
+                     <!-- blankCell is an empty cell -->
+                     <ImageView id="blankCell" fx:id="helmetSlot" fitHeight="32.0" fitWidth="32.0" GridPane.columnIndex="1" GridPane.rowIndex="0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">    
+                        <image>
+                           <Image url="@../../images/helmet_slot_new.png" />
+                        </image>
+                     </ImageView>
+                     <!-- shieldCell is the cell where a shield intended to be equipped will be dragged by the human player -->
+                     <ImageView id="shieldCell" fx:id="shieldSlot" fitHeight="32.0" fitWidth="32.0" GridPane.columnIndex="2" GridPane.rowIndex="0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">    
+                        <image>
+                           <Image url="@../../images/shield_slot.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="rareItemSlot1" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                        <image>
+                           <Image url="@../../images/rareItem_slot.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="rareItemSlot2" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <image>
+                           <Image url="@../../images/bin_icon.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="armourSlot" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <image>
+                           <Image url="@../../images/armour_slot.png" />
+                        </image>
+                     </ImageView>
+                  </children>
+                  <padding>
+                     <Insets bottom="20.0" top="20.0" />
+                  </padding>
+               </GridPane>
+
+               <!-- unequippedInventory is for unequipped items, which can be dragged into the equipped inventory -->
+               <GridPane fx:id="unequippedInventory" alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                  <columnConstraints>
+                     <ColumnConstraints />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints />
+                  </rowConstraints>
+                  <children>
+                     
+                  </children>
+                  <VBox.margin>
+                     <Insets left="20.0" right="20.0" />
+                  </VBox.margin>
+               </GridPane>
+               <TextArea fx:id="statsText" editable="false" prefColumnCount="0" prefRowCount="0" style="-fx-background-color: #757575#757575;" wrapText="true" VBox.vgrow="ALWAYS">
+                  <VBox.margin>
+                     <Insets left="10.0" right="10.0" top="10.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font size="10.0" />
+                  </font>
+               </TextArea>
+
+                                 <!-- clicking this button returns the human player to the main menu -->
+               <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxWidth="1.7976931348623157E308" onAction="#switchToMainMenu" prefHeight="40.0" style="-fx-background-color: #FF0000#FF0000;" text="EXIT" textAlignment="CENTER" textFill="WHITE">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </VBox.margin>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </Button>
+            </children>
+         </VBox>
+      </HBox>
+   </VBox>
+</AnchorPane>
